@@ -16,7 +16,7 @@
     state: directory
     owner: root
     group: root
-    mode: 0755
+    mode: 0777
   loop:
    - /mnt/repository
    - /mnt/data-ssd
