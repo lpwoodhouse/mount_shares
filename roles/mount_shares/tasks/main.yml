@@ -28,5 +28,5 @@
     state: mounted
     fstype: nfs
   loop:
-   - { src: '10.0.0.5:/volume1/Repository', path, '/mnt/repository' }
+   - { src: '10.0.0.5:/volume1/Repository', path: '/mnt/repository' }
     
