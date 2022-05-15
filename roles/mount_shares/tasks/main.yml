@@ -3,7 +3,7 @@
 
 - name: install required packages
   package:
-    name: "{{ item.packages }}
+    name: "{{ item.packages }}"
   when: item.family == ansible_os_family
   loop:
     - { family: 'RedHat', packages: 'nfs-utils, cifs-utils' }
