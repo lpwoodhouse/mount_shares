@@ -1,2 +1,32 @@
 ---
-# main task for mount_shares role
+# main tasks for mount_shares role
+
+- name: install required packages
+  package:
+    name: "{{ item.packages }}
+  when: item.family == ansible_os_family
+  loop:
+    - { family: 'RedHat', packages: 'nfs-utils, cifs-utils' }
+    - { family: 'Debian', packages: 'nfs-common, cifs-utils' }
+
+- name: create mount paths
+  file:
+    path: "{{ item }}"
+    state: directory
+    owner: root
+    group: root
+    mode: 0755
+  loop:
+   - /mnt/repository
+   - /mnt/data-ssd
+
+- name: mount nfs shares
+  mount:
+    src: "{{ item.src }}"
+    path: "{{ item.path }}"
+    opts: defaults
+    state: mounted
+    fstype: nfs
+  loop:
+   - { src: '10.0.0.5:/volume1/Repository', path, '/mnt/repository' }
+    
