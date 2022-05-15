@@ -37,7 +37,7 @@
   mount:
     src: "{{ item.src }}"
     path: "{{ item.path }}"
-    opts: "{{ item.opts }}'
+    opts: "{{ item.opts }}"
     state: mounted
     fstype: "{{ item.type }}"
   loop:
