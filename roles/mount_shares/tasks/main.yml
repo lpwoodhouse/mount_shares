@@ -4,6 +4,7 @@
 - name: install required packages
   package:
     name: "{{ item.packages }}"
+    state: present
   when: item.family == ansible_os_family
   loop:
     - { family: 'RedHat', packages: 'nfs-utils, cifs-utils' }
@@ -20,13 +21,28 @@
    - /mnt/repository
    - /mnt/data-ssd
 
+- name: make cifs credentials file
+  lineinfile:
+    path: /etc/cifspassword
+    create: true
+    owner: root
+    group: root
+    mode: 0600
+    line: "{{ item }}"
+  loop:
+    - "username=babsw"
+    - "password=Br3tton30"
+
 - name: mount nfs shares
   mount:
     src: "{{ item.src }}"
     path: "{{ item.path }}"
-    opts: defaults
+    opts: "{{ item.opts }}'
     state: mounted
-    fstype: nfs
+    fstype: "{{ item.type }}"
   loop:
-   - { src: '10.0.0.5:/volume1/Repository', path: '/mnt/repository' }
+   - { src: '10.0.0.5:/volume1/Repository', path: '/mnt/repository', opts: 'defaults', type: 'nfs' }
+   - { src: '//10.0.0.9/data-ssd', path: '/mnt/data-ssd', opts: 'uid=0,credentials=/etc/cifspassword,iocharset=utf8,vers=3.0,noperm', type: 'cifs' }
+
+
     
