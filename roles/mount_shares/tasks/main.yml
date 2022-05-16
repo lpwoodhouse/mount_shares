@@ -3,7 +3,7 @@
 
 - name: install required packages
   package:
-    name: "{{ item.name }}"
+    name: "{{ item.name | join(',') }}"
     state: present
   when: item.family == ansible_os_family
   loop: "{{ packages }}"
