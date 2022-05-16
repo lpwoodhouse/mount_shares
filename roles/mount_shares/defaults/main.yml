@@ -2,9 +2,13 @@
 # default variables for mount_shares role
 packages:
   - family: RedHat
-    name: 'nfs-utils cifs-utils'
+    name:
+      - nfs-utils
+      - cifs-utils
   - family: Debian
-    name: 'nfs-common cifs-utils'
+    name:
+      - nfs-common
+      - cifs-utils
 
 mounts:
   - src: "10.0.0.5:/volume1/Repository"
