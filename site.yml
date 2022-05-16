@@ -12,11 +12,11 @@
   - name: make host group from survey hosts list
     add_host:
       hostname: "{{ item }}"
-      groupname: host_group      
+      groupname: new_group      
     loop: "{{ linux_hosts }}"
 
 - name: configure automount shares on hosts
-  hosts: host_group:!127.*
+  hosts: new_group
   gather_facts: true
   become: true
   
