@@ -1,2 +1,24 @@
 ---
 # default variables for mount_shares role
+packages:
+  - family: RedHat
+    name: 'nfs-utils cifs-utils'
+  - family: Debian
+    name: 'nfs-common cifs-utils'
+
+mounts:
+  - src: "10.0.0.5:/volume1/Repository"
+    path: "mnt/repository"
+    type: nfs
+    opts: "defaults"
+  - src: "10.0.0.5:/volume1/Media"
+    path: "/mnt/media"
+    type: nfs
+    opts: "defaults"
+  - src: "//10.0.0.9/data-ssd"
+    path: "/mnt/data-ssd"
+    type: cifs
+    opts: "uid=0,credentials=/etc/cifspassword,iocharset=utf8,vers=3.0,noperm"
+
+cifs_user: <user>
+cifs_pass: <password>
