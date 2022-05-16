@@ -43,7 +43,7 @@
       state: present
     when: not stat_result.stat.exists
   
-  when: ansible_os_family == Debian
+  when: ansible_os_family == "Debian"
 
 - name: mount shares
   mount:
