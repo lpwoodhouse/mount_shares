@@ -28,6 +28,7 @@
   loop:
     - "{{ cifs_user }}"
     - "{{ cifs_pass }}"
+  no_log: true
 
 - name: configure Ubuntu for cifs mounts
   block:
