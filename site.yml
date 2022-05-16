@@ -1,7 +1,7 @@
 ---
 # main task for role execution
 - name: configure inventory hosts
-  hosts: localhost
+  hosts: all
   gather_facts: no
   
   vars:
@@ -16,7 +16,7 @@
     loop: "{{ linux_hosts }}"
 
 - name: configure automount shares on hosts
-  hosts: new_group
+  hosts: new_group,!localhost
   gather_facts: true
   become: true
   
