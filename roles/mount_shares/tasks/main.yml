@@ -34,12 +34,12 @@
   
   - name: check icharset utf8 exists
     stat:
-      path: '/lib/modules/$(uname -r)/kernel/fs/nls/nls_utf8.ko'
+      path: "/lib/modules/{{ ansible_kernel }}/kernel/fs/nls/nls_utf8.ko"
     register: stat_result
 
   - name: install kernel extra modules (ensures nsl_utf8.ko is present)
     package:
-      name: 'linx-modules-extra-$(uname -r)'
+      name: "linux-modules-extra-{{ ansible_kernel }}"
       state: present
     when: not stat_result.stat.exists
   
