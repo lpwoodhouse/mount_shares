@@ -26,8 +26,8 @@
     mode: 0600
     line: "{{ item }}"
   loop:
-    - "{{ cifs_user }}"
-    - "{{ cifs_pass }}"
+    - "username={{ cifs_user }}"
+    - "password={{ cifs_pass }}"
   no_log: true
 
 - name: configure Ubuntu for cifs mounts
