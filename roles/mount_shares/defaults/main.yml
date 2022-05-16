@@ -12,7 +12,7 @@ packages:
 
 mounts:
   - src: "10.0.0.5:/volume1/Repository"
-    path: "mnt/repository"
+    path: "/mnt/repository"
     type: nfs
     opts: "defaults"
   - src: "10.0.0.5:/volume1/Media"
