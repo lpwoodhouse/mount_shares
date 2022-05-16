@@ -16,7 +16,7 @@
     loop: "{{ linux_hosts }}"
 
 - name: configure automount shares on hosts
-  hosts: host_group:!localhost
+  hosts: host_group:!127.*
   gather_facts: true
   become: true
   
