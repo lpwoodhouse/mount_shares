@@ -1,20 +1,28 @@
-# Ansible Role: <role name>
+# Ansible Role: mount_shares
 
 ### <sub-heading>
 
-Description here
+Role tailored to my homelab environment for mounting my most commonly used shares
 
 ## Requirements
 
-None
+community.general<br>
+ansible.posix
 
 ## Role Variables
 
 Available variables are listed below, along with default values (see ```defaults/main.yml```)
 ```shell
-variable1:
-variable2:
-...etc
+packages:
+  family: RedHat
+  name: nfs-utils
+cifs_user: <windows_user>
+cifs_pass: <windows_password>
+mounts:
+  src: <share_path>
+  path: <mount_directory>
+  type: nfs/cifs
+  opts: defaults
 ```
 ## Dependencies
 
